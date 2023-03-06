@@ -8,7 +8,6 @@ const Order = require('../models/orderSchema')
 const Banner = require('../models/bannerSchema')
 const jwt = require('jsonwebtoken')
 const ExcelJS = require('exceljs')
-const PDFDocument = require('pdfkit')
 
 
 
@@ -41,7 +40,7 @@ const adminLogin = (req, res) => {
 }
 
 const adloggedIn = (req, res) => {
-    console.log(req.body);
+    console.log(req.body,"gggggggggggtttttttggvytfytfyutfytfytfitfit");
     adminhelpers.doadLogin(req,res)
     
 }

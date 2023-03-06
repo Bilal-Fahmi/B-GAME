@@ -76,7 +76,6 @@ const doSignup = (req, res) => {
 
 const loggedIn = (req, res) => {
     console.log(req.body);
-    console.log('jiji');
     userhelpers.doLogin(req, res)
 }
 

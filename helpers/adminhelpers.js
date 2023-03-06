@@ -12,10 +12,18 @@ const bcrypt = require('bcrypt')
 
 
 const doadLogin = async (req, res) => {
-
-
-    User.findOne({ email: req.body.email }).exec((error, user) => {
+    console.log(req.body,"hhhhjjh")
+    // console.log(' jerjsdfj');
+    try {
+         console.log(req.body,"jhkjhkjhkljhlkjlkjsd") 
+    User.findOne({ email: req.body.email  })
+    // console.log(admin, " t=admin was dakjdfilsafdhvliausdhfliuashdfliuashdfliu")
+    // .catch(err=>console.log(err.message))
+   
+    .exec((error, user) => {
+        console.log(error,user);
         if (error) {
+            console.log(error);
             res.redirect('/admin')
         }
         if (user) {
@@ -30,6 +38,16 @@ const doadLogin = async (req, res) => {
           
         }
     })
+        
+    } catch (error) {
+        console.log(error);
+    }
+    finally{
+        console.log('jandslo');
+    }
+
+
+  
 
 }
     //     else {
