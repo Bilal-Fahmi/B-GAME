@@ -8,7 +8,7 @@ const CategoryImage = require('../validator/imageValidation')
 const product=require('../controller/product-management')
 const ProductImage = require('../validator/imageValidation')
 const Banner = require('../validator/imageValidation')
-const Routes = require('twilio/dist/lib/rest/Routes')
+
 const { getallcategory } = require('../controller/test')
 const { requireSignin, adminMiddleware } = require('../middleware/common')
 
