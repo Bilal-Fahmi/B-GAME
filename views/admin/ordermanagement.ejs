@@ -1,0 +1,86 @@
+<%-include('../layouts/admin/admin-header')  -%> 
+
+      <!-- Breadcrumb-->
+     
+              <li class="breadcrumb-item active fw-light" aria-current="page">Order  </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- Page Header -->
+      <header class="py-4">
+        <div class="container-fluid py-2">
+          <h1 class="h3 fw-normal mb-0">Order</h1>
+        </div>
+      </header>
+      <section class="tables">   
+        
+         
+            
+            <div class="col-lg-12">
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table text-sm mb-0 table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Order ID</th>
+                          <th>Payment</th>
+                          <th>Bill Amount</th>
+                          <th>Order Date</th>
+                          <th>Products</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                          <!-- <th>Actions</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% order.forEach((order,index)=>{ %> 
+                        <tr>
+                          <th scope="row"><%= index+1 %></th>
+                          <td><%-order._id %> </td>
+                          <td><%-order.payment %> </td>
+                          <td><%-order.billamount %> </td>
+                          <td><%-order.orderdate.toLocaleString() %></td>
+                          <td><%= order.products %></td>
+                          <td><%-order.status  %></td>
+                          <% if(order.status !='Placed'){%>
+                           <td> <input type="button" value="Place"  class="btn btn-primary placebtn" id="<%= order._id %>" ></td>
+                           <%} %>
+                        </tr>
+                        <% }) %> 
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <script>
+        const btns= document.querySelectorAll('.placebtn')
+        console.log(btns);
+        for(let i=0;i<btns.length;i++){
+         
+          btns[i].addEventListener('click',function(){
+            console.log(this);
+            const id = this.id
+            console.log(id);
+            fetch(
+              `/admin/placebtn/${id}`)
+              .then(res=>res.json())
+              .then(data=>{
+                console.log(data);
+                if(data.message =='placed'){
+                  document.getElementById(`${id}`).remove()
+                }
+
+              })
+            
+          })
+        }
+
+        </script>  
+            
+      </section>
+      <%-include('../layouts/admin/admin-footer')  -%> 

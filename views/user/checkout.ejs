@@ -1,0 +1,294 @@
+<%-include('../layouts/user/user-header') -%>
+  <!-- Header part end-->
+
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Product Checkout</h2>
+              <!-- <p>Home <span>-</span> Shop Single</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+
+  <!--================Checkout Area =================-->
+  <section class="checkout_area padding_top">
+    <div class="container">
+     
+      <form id="couponcheck">
+
+        <div class="cupon_area">
+          <div class="check_title">
+            <h2>
+              Have a coupon?
+              <a>Check your code here</a>
+            </h2>
+          </div>
+          <input type="text" placeholder="Enter coupon code" id="coupon" name="coupon" />
+          <input type="text" name="cartAmount" hidden value="<%= cartlist.totalPrice %>">
+          <button type="submit" class="tp_btn" id="couponButton ">Apply Coupon</button>
+        </div>
+      </form>
+
+        
+      <form class="row contact_form" id="newOrder">
+
+        <input type="text" hidden id="couponRedeme" value="">
+        <input type="text" hidden id="cartAmount" name="cartAmount" value="<%= cartlist.totalPrice %>">
+        
+
+        <input type="text" hidden name="couponAmount" id="couponAmount" value="0">
+        <div class="billing_details">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3>Shipping Address</h3>
+              
+              <% cartlist.user.address.forEach(address=>{%>
+              <div class="col-12">
+                <div class="row col-12 p-0 m-0">
+                  <div class="col-12 col-lg-6 input-container">
+                    <div class="radion_btn">
+                    <input type="radio" id="<%=address._id%>" name="address"  required />
+                    <label for="<%=address._id%>"><%=address.address%>/<%=address.city%>/<%=address.zip%> </label>
+                    <div class="check"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%}) %>
+
+            </div>
+            <div class="col-lg-4">
+
+              <div class="order_box">
+
+                <h2>Your Order</h2>
+
+                <ul class="list">
+                  <li>
+                    <a>Product
+                      <span>Price</span>
+                    </a>
+                  </li>
+                  <% cartlist.cartItems.forEach(product=>{%>
+                    <li>
+                      <a>
+                        <%= product.product.name %>
+                          <span class="last">₹<%= product.product.price %></span>
+                      </a>
+                    </li>
+                    <%}) %>
+
+
+                </ul>
+                <ul class="list list_2">
+
+
+                  
+                  <li>
+                    <a>Sub Total
+                      <span id="subtotal">
+                        <% let subtotal=0 %>
+                          <% cartlist.cartItems.forEach(product=> { %><%subtotal +=product.product.price *
+                              product.quantity%>
+                              <%}) %>
+                                ₹<%=subtotal %>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a>Discount
+                      <span id="discount"> </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a>Total
+                      <span id="total"> </span>
+                    </a>
+                  </li>
+                </ul>
+                <div class="payment_item">
+                  <div class="radion_btn">
+                    <input type="radio" id="f-option5" name="payment" value="COD" required />
+                    <label for="f-option5">Cash On Delivery</label>
+                    <div class="check"></div>
+                  </div>
+                  <p>
+                    Please send a check to Store Name, Store Street, Store Town,
+                    Store State / County, Store Postcode.
+                  </p>
+                </div>
+                <div class="payment_item active">
+                  <div class="payment_item">
+                    <div class="radion_btn">
+                      <input type="radio" id="f-option4" name="payment" value="Razorpay" required/>
+                      <label for="f-option4">Razorpay </label>
+                      <div class="check"></div>
+                    </div>
+                  </div>
+                  <p>
+                    Please send a check to Store Name, Store Street, Store Town,
+                    Store State / County, Store Postcode.
+                  </p>
+                </div>
+
+                <button class="btn_3" type="submit">Proceed </button>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.5/dist/sweetalert2.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      const toastMixin = Swal.mixin({
+        toast: true,
+        icon: 'success',
+        title: 'General Title',
+        animation: false,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 1750,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+
+      $('#couponcheck').submit((e) => {
+        e.preventDefault()
+        $.ajax({
+          url: '/user/coupon',
+          method: 'post',
+          data: $('#couponcheck').serialize(),
+          success: (res) => {
+            console.log(res);
+            if (res.couponAvailable) {
+              $('#couponRedeme').val(res.couponName)
+              $('#couponAmount').val(res.couponAmount)
+              $('#discount').html(`${res.couponAmount}`)
+              let tPrice = res.cartAmount -   res.couponAmount
+console.log("total Price", tPrice);
+          $('#total').html(`₹ ${tPrice}`)
+document.getElementById("couponButton").disabled = true;
+          $('#buttonText').html("Coupon Applied")
+toastMixin.fire({
+            title: "Coupon Applied Successfully",
+            icon: 'success',
+            iconColor: '#fff',
+            color: '#fff',
+
+            background: '#228B22',
+          })
+
+        }else {
+
+          toastMixin.fire({
+            title: `${res.errorMessage}`,
+            icon: 'warning',
+            iconColor: '#fff',
+            color: '#fff',
+            background: '#cc3300',
+          });
+        }
+    }
+  })
+})
+
+$('#newOrder').submit((e)=>{
+  e.preventDefault()
+ $.ajax({
+  url:'/user/newOrder',
+  method:'post',
+  data:$('#newOrder').serialize(),
+  success:(res)=>{
+    console.log("response:",res);
+    if(res.COD){
+      location.href="/user/confirmation"
+    }else{
+      razorpay(res)
+    }
+  }
+ })
+})
+
+
+
+
+function razorpay(res){
+  console.log("evedeeeee"+res.orderdata);
+  var options={
+    "key": "rzp_test_8emA6zzli6nGP1", // Enter the Key ID generated from the Dashboard
+    "amount": res.orderdata.billamount * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "BGAME", //your business name
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": res.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler":function(response){
+      verifyPayment(response,res.order,res.orderData)
+      location.href= '/user/confirmation'
+    },
+    // "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "prefill": {
+        "name": res.user.name, //your customer's name
+        "email": res.user.email,
+        "contact":res.user.mobile
+    },
+    
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+  rzp1.open() ;
+
+  rzp1.on('payment.failed',function(response){
+    alert('payment failed')
+  })
+    
+}
+
+function verifyPayment(response,order,orderData){
+  $.ajax({
+    url:"verify-payment",
+    method:"post",
+    data:{
+      response,order,orderData
+    },
+    success:(response)=>{
+      if(response.signatureIsValid === "true"){
+        location.href='/confirmation'
+      }else{
+        // location.href='/orderFailed'
+        alert('payment failed')
+      }
+    }
+  })
+}
+
+
+
+
+    </script>
+
+
+
+  </section>
+  <!--================End Checkout Area =================-->
+
+  <!--::footer_part start::-->
+  <%-include('../layouts/user/user-footer') -%>

@@ -1,0 +1,62 @@
+<%-include('../layouts/admin/admin-header')  -%> 
+      <!-- Breadcrumb-->
+    
+              <li class="breadcrumb-item active fw-light" aria-current="page">Coupon  </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- Page Header-->
+      <!-- <header class="py-2">
+        <div class="container-fluid py-2">
+          <h2 class="h3 fw-normal mb-0">Coupon</h2>
+        </div>
+      </header> -->
+      <!-- Forms Section-->
+      <section class="px-4"> 
+        <section id="custom-container" class="container w-100 mt-3 mx-0 p-0">
+          <div class="bg-black">
+              <p class="text-white px-3 fw-bold py-3">Add Coupon</p>
+          </div>
+          <!-- <div class="form-container d-flex flex-column justify-content-center align-items-center">
+              <p class="text-center text-black fw-bold fs-3">Add Coupon</p>
+          </div> -->
+          <form action="/admin/addincoupon" method="post" class="d-flex flex-column align-items-center">
+              <div class="input-container d-flex flex-column col-5 py-1">
+                  <label for="code" class="text-black fw-bold fs-5 py-1">Coupon code</label>
+                  <input type="text" name="code" id="code" class="rounded border-0 py-2 px-2" placeholder="Coupon Code" required>
+              </div>
+      
+              <!-- <div class="input-container d-flex flex-column col-5 py-1">
+                  <label for="user_allowed" class="text-black fw-bold fs-5 py-1">Maximum allowed users</label>
+                  <input type="number" name="user_allowed" id="user_allowed" class="rounded border-0 py-2 px-2" placeholder="Maximum allowed users" required>
+              </div> -->
+      
+              <div class="input-container d-flex flex-column col-5 py-1">
+                  <label for="minimum_purchase" class="text-black fw-bold fs-5 py-1">Minimum purchase amount</label>
+                  <input type="number" name="minimum_purchase" id="minimum_purchase" class="rounded border-0 py-2 px-2" placeholder="Minimum purchase amount" required>
+              </div>
+      
+              <div class="input-container d-flex flex-column col-5 py-1">
+                  <label for="discount" class="text-black fw-bold fs-5 py-1">Discount amount</label>
+                  <input type="number" name="discount" id="discount" class="rounded border-0 py-2 px-2" placeholder="Discount amount" required>
+              </div>
+              
+              <div class="input-container d-flex flex-column col-5 py-1">
+                  <label for="expiry" class="text-black fw-bold fs-5 py-1">Expiry date</label>
+                  <input type="date" name="expiry" id="expiry" class="rounded border-0 py-2 px-2" placeholder="Expiry date" required>
+              </div>
+              <%if (typeof err!="undefined" && err) {%>
+                  <p class="text-danger text-center"><%=err%></p>
+              <%}%>
+             <div class="d-flex flex-row justify-content-center align-items-center col-5 py-2">
+                  <button class="btn bg-warning border-0 rounded mx-1 px-4 py-2"><a href="/admin/coupontable" class="text-dark text-decoration-none">Cancel</a></button>
+                  <button class="btn bg-success border-0 rounded mx-1 px-4 py-2 text-white" type="submit">Add Coupon</button>
+             </div>
+          </form>
+      </section>
+        
+        
+      </section>
+      
+      <%-include('../layouts/admin/admin-footer')  -%> 

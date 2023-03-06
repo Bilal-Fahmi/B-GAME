@@ -1,0 +1,128 @@
+<%-include('../layouts/user/user-header') -%>
+  <!-- Header part end-->
+
+
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Cart Products</h2>
+              <p>Home <span>-</span>Cart Products</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+
+  <!--================Cart Area =================-->
+  <section class="cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <% if (!cartlist) { %>
+                <h3>Cart is empty</h3>
+                <% }else {%>
+
+
+                  <% cartlist.cartItems.forEach(product=>{%>
+                    <tr>
+                      <td>
+                        <div class="media">
+                          <div class="d-flex">
+                            <img
+                              src="/uploads/product/<%= product.product.category %>/<%= product.product.productImage %>"
+                              width="150px" alt="">
+
+                          </div>
+
+                          <div class="media-body">
+
+                            <p>
+                              <%=product.product.name %>
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <h5>₹<%=product.product.price %>
+                        </h5>
+                      </td>
+                      <td>
+                   
+                      </td>
+
+                      <td>
+                        <form action="/user/deletecart/<%=product.id %>" method="post">
+                          <button type="submit" class="btn btn-outline-danger">Cancel</button>
+                        </form>
+                      </td>
+
+                    </tr>
+                    <%}) %>
+                      <% } %>
+
+                        
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            <% if (!cartlist) { %>
+                              <h5>
+                               0
+                              </h5>
+                              <% }else {%>
+
+                                <h5>
+                                  <% let subtotal=0 %>
+                                    <% cartlist.cartItems.forEach(product=> { %><%subtotal +=product.product.price *
+                                        product.quantity%>
+                                        <%}) %>
+                                          Subtotal ₹<%=subtotal %>
+                                </h5>
+                                <% } %>
+                          </td>
+                          <td>
+                            <h5></h5>
+                          </td>
+                        </tr>
+                        
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <!-- <form action="" method="get">  <a class="btn_1" href="#">Continue Shopping</a></form>  -->
+            <form action="/user/checkout" method="get">
+
+              <% if (!cartlist) { %>
+                <button class="btn_1 checkout_btn_1" type="submit" disabled>Proceed to
+                  checkout</button>
+                  <p>cannot procced to checkout without Games in cart</p>
+                <% }else {%>
+                  <button class="btn_1 checkout_btn_1" type="submit">Proceed to
+                    checkout</button>
+                  <% } %>
+               
+              
+              </form>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
+
+  <!--::footer_part start::-->
+  <%-include('../layouts/user/user-footer') -%>

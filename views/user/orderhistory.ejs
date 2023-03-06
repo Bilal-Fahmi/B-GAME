@@ -1,0 +1,69 @@
+<%-include('../layouts/user/user-header')-%>
+
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Orders History</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="container">
+
+<div class="section-top-border">
+    <!-- <h4 class="mb-30">Order</h4> -->
+    <div class="progress-table-wrap">
+        <div class="progress-table">
+          <div class="table-head">
+            <div class="serial">#</div>
+            <div class="country">Product</div>
+            <div class="visit">Status</div>
+            <div class="visit pl-4" >Action</div>
+          </div>
+          <% orders.forEach((order,index)=>{%>
+          <% order.products.forEach((item)=>{%>
+            <div class="table-row">
+                <div class="serial"><%= index+1 %></div>
+                <div class="country"><%= item.product.name %></div>
+                <div class="visit"><%= order.status  %></div>
+                <% if (order.status !='Canceled'){%>
+               <input type="button" value="Cancel" id="<%= order.id %>"  class="genric-btn primary circle arrow cancelbtn"><span class="lnr lnr-arrow-right"></span>
+               <%} %>
+              </div>
+            <%}) %>
+            <%}) %>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script>
+const btns= document.querySelectorAll('.cancelbtn');
+console.log(btns);
+for(let i=0;i<btns.length;i++){
+  btns[i].onclick=function(){
+   const id= this.id
+   fetch(
+    `/user/cancelorder/${id}`
+   ).then(res=>res.json())
+   .then(data=>{
+    if(data.message=="increased"){
+      document.getElementById(`${id}`).remove()
+    }
+   })
+   .catch(error=>console.log(error))
+
+  }
+}
+</script>
+  
+
+
+<%-include('../layouts/user/user-footer')-%>

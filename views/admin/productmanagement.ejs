@@ -1,0 +1,85 @@
+<%-include('../layouts/admin/admin-header')  -%> 
+      <!-- Breadcrumb-->
+     
+              <li class="breadcrumb-item active fw-light" aria-current="page">Products</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- Page Header -->
+      <header class="py-4">
+        <div class="container-fluid py-2">
+          <!-- <h1 class="h3 fw-normal mb-0">Users</h1> -->
+          <div class="d-flex justify-content-end">
+            <form action="/admin/addProduct" method="get">
+            <button type="submit" class="btn bg-info border-0 rounded mx-1 px-4 py-2">Add Product</button>
+          </form></div>
+        </div>
+      </header>
+      <section class="tables">   
+        
+         
+            
+            <div class="col-lg-12">
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table text-sm mb-0 table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                          <th>Category</th>
+                          <th>Image</th>
+                          <th>Status</th>
+                          <th class="px-5">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% product.forEach(product=>{ %> 
+                          <tr>
+                            <th scope="row"></th>
+                            <td><%-product.name %> </td>
+                            <td><%-product.description %> </td>
+                            <td><%-product.category %></td>
+                            <td><img src="/uploads/product/<%= product.category %>/<%=product.productImage %> " width="50px"> </td>
+                           <%if(product.status=='Listed'){%> 
+                          <td><span class="badge text-bg-success">Listed</span></td>
+                          <% } else { %>
+                           <td><span class="badge text-bg-danger">Unlisted</span></td>
+                              <% } %> 
+                             <td class="d-flex"> 
+                              <% if(product.status=='Unlisted'){ %>
+                                <form action="/admin/listproduct/<%=product._id %> " method="post">
+                                  <button type="submit" class="btn btn-outline-success border-0 rounded mx-1 px-4 py-2" >List</button>
+                                </form>
+                                <% } else { %>
+                                  <form action="/admin/unlistproduct/<%=product._id %> " method="post">
+                                    <button type="submit"  class="btn btn-outline-danger border-0 rounded mx-1 px-4 py-2"  >
+                                      Unlist</button>
+                                    </form>  
+                                    
+                                <% } %>
+                                
+                                <!-- <form action="/admin/deleteproduct/<%=product._id %>" method="post">
+                                  <button type="submit" class="btn btn-link2" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Delete"  >🗑️</button></form> -->
+                                
+                                  
+                                    <form action="/admin/editProduct/<%=product._id %>" method="get">
+                                      <button type="submit" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Edit">✍</button>
+                                    </form>
+                             </td>
+                          </tr>
+                        <% }) %> 
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            
+      </section>
+      <%-include('../layouts/admin/admin-footer')  -%> 

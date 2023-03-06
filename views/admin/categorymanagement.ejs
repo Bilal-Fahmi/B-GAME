@@ -1,0 +1,89 @@
+<%-include('../layouts/admin/admin-header')  -%> 
+      <!-- Breadcrumb-->
+      
+              <li class="breadcrumb-item active fw-light" aria-current="page">Category  </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- Page Header -->
+      <header class="py-4">
+        <div class="container-fluid py-2">
+          <!-- <h1 class="h3 fw-normal mb-0">Category</h1> -->
+        <div class="d-flex justify-content-end">
+            <form action="/admin/addCategory" method="get">
+            <button type="submit" class="btn bg-info border-0 rounded mx-1 px-4 py-2">Add Category</button>
+          </form></div>
+         
+        </div>
+      </header>
+      <section class="tables">   
+        
+         
+            
+            <div class="col-lg-12">
+              <div class="card">
+                
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="table_id" class="table text-sm mb-0 table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                          <!-- <th>Image</th> -->
+                          <th>Status</th>
+                          <th class="px-5">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% category.forEach(category=>{ %> 
+                        <tr>
+                          <th scope="row"></th>
+                          <td><%-category.name %> </td>
+                          <td><%-category.description %> </td>
+                         
+                         <%if(category.status=='Listed'){%> 
+                        <td><span class="badge text-bg-success">Listed</span></td>
+                        <% } else { %>
+                         <td><span class="badge text-bg-danger">Unlisted</span></td>
+                            <% } %> 
+                           <td class="d-flex"> 
+                            <% if(category.status=='Unlisted'){ %>
+                              <form action="/admin/listcategory/<%=category._id %> " method="post">
+                                <button type="submit" class="btn btn-outline-success border-0 rounded mx-1 px-4 py-2" >List</button>
+                              </form>
+                              <% } else { %>
+                                <form action="/admin/unlistcategory/<%=category._id %> " method="post">
+                                  <button type="submit"  class="btn btn-outline-danger border-0 rounded mx-1 px-4 py-2"  >
+                                    Unlist</button>
+                                  </form>  
+                                  
+                              <% } %>
+                              
+                              <!-- <form action="/admin/deletecategory/<%=category.name %> " method="post">
+                                <button type="submit" class="btn btn-link2" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Delete"  >🗑️</button></form> -->
+                              
+                                
+                                  <form action="/admin/editcategory" method="get">
+                                    <button type="submit" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Edit">✍</button>
+                                  </form>
+                           </td>
+                        </tr>
+                        <% }) %> 
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            
+      </section>
+
+
+      <script>$(document).ready( function () {
+        $('#table_id').DataTable();
+    } );</script>
+      <%-include('../layouts/admin/admin-footer')  -%> 

@@ -1,0 +1,46 @@
+<%-include('../layouts/admin/admin-header')  -%> 
+
+
+<li class="breadcrumb-item active fw-light" aria-current="page">Category  </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- Forms Section-->
+      <section class="px-4"> 
+        <div class="bg-black">
+          <p class="text-white px-3 fw-bold py-3">Edit Category</p>
+      </div>
+        
+        <form action="/admin/editincategory" method="post" class="d-flex flex-column align-items-center " enctype="multipart/form-data">
+          <div class="input-container d-flex flex-column col-5 py-1">
+              <label for="name" class="text-black fw-bold fs-5 py-1">Name</label>
+              <input type="text" name="name" id="name" class="rounded border-0 py-2 px-2" placeholder="Name" required>
+          </div>
+
+          <div class="input-container d-flex flex-column col-5 py-1">
+            <label for="description" class="text-black fw-bold fs-5 py-1">Description</label>
+            <textarea id="description" name="description" class="rounded border-0 py-2 px-2" placeholder="Description"></textarea>
+          </div>
+          <div class="input-container d-flex flex-column col-5 py-1">
+            <label for="categoryimage" class="text-black fw-bold fs-5 py-1">Category Image:</label>
+            <input type="file" id="categoryimage" name="categoryimage" class="rounded border-0 py-2 px-2" required>
+          </div>
+        
+  
+         
+  
+          
+         
+          <%if (typeof err!="undefined" && err) {%>
+              <p class="text-danger text-center"><%=err%></p>
+          <%}%>
+         <div class="d-flex flex-row justify-content-center align-items-center col-5 py-2">
+              <button class="btn bg-warning border-0 rounded mx-1 px-4 py-2"><a href="/admin/categorytable" class="text-dark text-decoration-none">Cancel</a></button>
+              <button class="btn bg-success border-0 rounded mx-1 px-4 py-2 text-white" type="submit">Edit Category</button>
+         </div>
+      </form>
+        
+      </section>
+
+      <%-include('../layouts/admin/admin-footer')  -%> 

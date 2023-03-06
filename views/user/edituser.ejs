@@ -1,0 +1,297 @@
+<%-include('../layouts/user/user-header') -%>
+
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Edit User</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="checkout_area padding_top">
+    <div class="container">
+
+
+      <form class="row contact_form">
+
+        <div class="billing_details">
+          <div class="row">
+            <div class="col-lg-8">
+              <h3>User</h3>
+
+              <div class="col-12">
+                <%  %>
+                <div class="row col-12 p-0 m-0">
+                  <div class="col-12 col-lg-12 input-container">
+                    <label for="username" id="form-label">Username<span style="color: red;">*</span></label>
+                    <input type="text" class="form-control my-2 mx-1" id="username" name="username" placeholder="<%= username %>"
+                      required>
+                  </div>
+
+
+
+                  <div class="col-12 col-lg-12 input-container">
+                    <label for="email" id="form-label">Email Address<span style="color: red;">*</span></label>
+                    <input type="text" class="form-control my-2 mx-1" id="email" name="email"
+                      placeholder="<%= email %>" required>
+                  </div>
+
+                          
+                </div>
+
+              </div>
+            </div>
+          </div>
+      </form>
+      <button class="genric-btn primary circle mr-2" data-toggle="modal" data-target="#myModal3">Edit</button>
+      <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="myModalLabel">Edit Info</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="/user/userDetails" method="post">
+                <div class="billing_details">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <!-- <h3>Address</h3> -->
+                      <div class="col-12">
+                        <div class="row col-12 p-0 m-0">
+                          <div class="col-12 col-lg-12 input-container">
+                            <label for="username" id="username">Name<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control my-2 mx-1" id="username" name="username"
+                              placeholder="<%= username %>" required>
+                          </div>
+
+                          <div class="col-12 col-lg-12 input-container">
+                            <label for="email" id="email">Email Address<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control my-2 mx-1" id="email" name="email"
+                              placeholder="<%= email %>" required>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="genric-btn primary circle">Edit</button>
+              </form>
+
+            </div>
+  </section>
+
+  
+  <section class="checkout_area padding_top">
+    <div class="container">
+      <form class="row contact_form">
+
+        <div class="section-top-border">
+
+
+          <h4 class="mb-30"> <input type="button" value="Add" class="genric-btn primary circle mr-2" data-toggle="modal"
+              data-target="#myModal">Address
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Add Address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class=""><form action=""></form></div>
+                    <form action="/user/addAddress" method="post">
+                       <div class="billing_details">
+                        <div class="row">
+                          <div class="col-lg-8">
+                            <h3>Address</h3>
+                            <div class="col-12">
+                              <div class="row col-12 p-0 m-0">
+                                <div class="col-12 col-lg-6 input-container">
+                                  <label for="username" id="form-label">Name<span style="color: red;">*</span></label>
+                                  <input type="text" class="form-control my-2 mx-1" id="name" name="name"
+                                    placeholder="Name" required>
+                                </div>
+                                <div class="col-12 col-lg-6 input-container">
+                                  <label for="number" id="form-label">Mobile<span style="color: red;">*</span></label>
+                                  <input type="number" class="form-control my-2 mx-1" id="phone" name="phone"
+                                    placeholder="Mobile number" required>
+                                </div>
+                                <div class="col-12 col-lg-6 input-container">
+                                  <label for="email" id="form-label">Email Address<span
+                                      style="color: red;">*</span></label>
+                                  <input type="text" class="form-control my-2 mx-1" id="email" name="email"
+                                    placeholder="Email Address" required>
+                                </div>
+                                <div class="col-12 input-container">
+                                  <label for="address" id="form-label">Address <span
+                                      style="color: red;">*</span></label>
+                                  <input type="text" class="form-control my-2 mx-1" id="address" name="address"
+                                    placeholder="Address " required>
+                                </div>
+                                <div class="col-12 col-lg-6 input-container">
+                                  <label for="state" id="form-label">State<span style="color: red;">*</span></label>
+                                  <input type="text" class="form-control my-2 mx-1" id="state" name="state"
+                                    placeholder="State" required>
+                                </div>
+                                <div class="col-12 col-lg-6 input-container">
+                                  <label for="district" id="form-label">District<span
+                                      style="color: red;">*</span></label>
+                                  <input type="text" class="form-control my-2 mx-1" id="district" name="district"
+                                    placeholder="District" required>
+                                </div>
+                                <div class="col-12 col-lg-6 input-container">
+                                  <label for="district" id="form-label">City/Town<span
+                                      style="color: red;">*</span></label>
+                                  <input type="text" class="form-control my-2 mx-1" id="city" name="city"
+                                    placeholder="City/Town" required>
+                                </div>
+                                <div class="col-12 col-lg-6 input-container">
+                                  <label for="district" id="form-label">Postcode/ZIP<span
+                                      style="color: red;">*</span></label>
+                                  <input type="text" class="form-control my-2 mx-1" id="zip" name="zip"
+                                    placeholder="Postcode/ZIP" required>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                      <button type="submit" class="genric-btn primary circle">Add</button>
+                    </form>
+                  </div>
+          </h4>
+
+          <div class="progress-table-wrap">
+            <div class="progress-table">
+              <div class="table-head">
+                <div class="serial">#</div>
+                <div class="country">Address</div>
+                <div class="country">City</div>
+                <div class="country">Zip</div>
+                <!-- <div class="visit">Action</div> -->
+
+              </div>
+              <% address.forEach((address,index)=>{%>
+              <div class="table-row">
+                
+                <div class="serial"><%=index+1 %></div>
+                <div class="country"><%= address.address %></div>
+                <div class="country"><%= address.city %></div>
+                <div class="country"><%= address.zip %></div>
+                <!-- <div class="visit">
+                  <input type="button" value="Edit" class="genric-btn primary circle mr-2" data-toggle="modal"
+                    data-target="#myModal2" id="editAddress" >
+                  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="myModalLabel">Edit Address</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/user/editAddress" method="post">
+                            <div class="billing_details">
+                              <div class="row">
+                                <div class="col-lg-8">
+                                 
+                                  <div class="col-12">
+                                    <div class="row col-12 p-0 m-0">
+                                      <div class="col-12 col-lg-6 input-container">
+                                        <label for="username" id="form-label">Name<span
+                                            style="color: red;">*</span></label>
+                                        <input type="text" class="form-control my-2 mx-1" id="username" name="username"
+                                          placeholder="Name" required>
+                                      </div>
+                                      <div class="col-12 col-lg-6 input-container">
+                                        <label for="number" id="form-label">Mobile<span
+                                            style="color: red;">*</span></label>
+                                        <input type="number" class="form-control my-2 mx-1" id="number" name="number"
+                                          placeholder="Mobile number" required>
+                                      </div>
+                                      <div class="col-12 col-lg-6 input-container">
+                                        <label for="email" id="form-label">Email Address<span
+                                            style="color: red;">*</span></label>
+                                        <input type="text" class="form-control my-2 mx-1" id="email" name="email"
+                                          placeholder="Email Address" required>
+                                      </div>
+                                      <div class="col-12 input-container">
+                                        <label for="address" id="form-label">Address <span
+                                            style="color: red;">*</span></label>
+                                        <input type="text" class="form-control my-2 mx-1" id="address" name="address"
+                                          placeholder="Address " required>
+                                      </div>
+                                      <div class="col-12 col-lg-6 input-container">
+                                        <label for="state" id="form-label">State<span
+                                            style="color: red;">*</span></label>
+                                        <input type="text" class="form-control my-2 mx-1" id="state" name="state"
+                                          placeholder="State" required>
+                                      </div>
+                                      <div class="col-12 col-lg-6 input-container">
+                                        <label for="district" id="form-label">District<span
+                                            style="color: red;">*</span></label>
+                                        <input type="text" class="form-control my-2 mx-1" id="district" name="district"
+                                          placeholder="District" required>
+                                      </div>
+                                      <div class="col-12 col-lg-6 input-container">
+                                        <label for="district" id="form-label">City/Town<span
+                                            style="color: red;">*</span></label>
+                                        <input type="text" class="form-control my-2 mx-1" id="city" name="city"
+                                          placeholder="City/Town" required>
+                                      </div>
+                                      <div class="col-12 col-lg-6 input-container">
+                                        <label for="district" id="form-label">Postcode/ZIP<span
+                                            style="color: red;">*</span></label>
+                                        <input type="text" class="form-control my-2 mx-1" id="zip" name="zip"
+                                          placeholder="Postcode/ZIP" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <button type="submit" class="genric-btn primary circle">Edit</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+      </form>
+    </div>
+    <%}) %>
+
+
+
+  <script>
+
+
+
+
+
+
+
+  </script> 
+
+  </section>
+
+
+
+
+  <%-include('../layouts/user/user-footer') -%>

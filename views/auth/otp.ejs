@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>otp</title>
+    <link rel="stylesheet" href="/css/users/otp.css">
+</head>
+<body>
+    
+
+<form action="/otpverification" method="post" autocomplete='off' class='form'>
+    <div class='control'>
+      <h1>
+        OTP Verification
+      </h1>
+    </div>
+    <div class='control block-cube block-input'>
+      <input name='otp' placeholder='OTP' type='tel'>
+      <div class='bg-top'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg-right'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg'>
+        <div class='bg-inner'></div>
+      </div>
+    </div>
+    
+    <button class='btn block-cube block-cube-hover' type='submit'>
+      <div class='bg-top'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg-right'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='text'>
+        Verify
+      </div>
+    </button>
+    <a class="p-5 text-white" href="" id="resend-otp"></a>
+    
+  </form>
+  <script src="/js/user/resendOtp.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+      <%-include('../layouts/admin/admin-header-dashboard')  -%> 
+      <!-- Counts Section -->
+      <section class="py-5">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+              <div class="d-flex">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy text-primary mt-1 flex-shrink-0">
+                  <use xlink:href="#user-1"> </use>
+                </svg>
+                <div class="ms-2">
+                  <h3 class="h4 text-dark text-uppercase fw-normal">New Clients</h3>
+                  <p class="text-gray-500 small">Last 7 days</p>
+                  <p class="display-6 mb-0">25</p>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+              <div class="d-flex">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy text-primary mt-1 flex-shrink-0">
+                  <use xlink:href="#survey-1"> </use>
+                </svg>
+                <div class="ms-2">
+                  <h3 class="h4 text-dark text-uppercase fw-normal">Work Orders</h3>
+                  <p class="text-gray-500 small">Last 5 days</p>
+                  <p class="display-6 mb-0">400</p>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+              <div class="d-flex">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy text-primary mt-1 flex-shrink-0">
+                  <use xlink:href="#list-details-1"> </use>
+                </svg>
+                <div class="ms-2">
+                  <h3 class="h4 text-dark text-uppercase fw-normal">New Quotes</h3>
+                  <p class="text-gray-500 small">Last 2 months</p>
+                  <p class="display-6 mb-0">342</p>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+              <div class="d-flex">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy text-primary mt-1 flex-shrink-0">
+                  <use xlink:href="#numbers-1"> </use>
+                </svg>
+                <div class="ms-2">
+                  <h3 class="h4 text-dark text-uppercase fw-normal">New Invoices</h3>
+                  <p class="text-gray-500 small">Last 2 days</p>
+                  <p class="display-6 mb-0">123</p>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+              <div class="d-flex">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy text-primary mt-1 flex-shrink-0">
+                  <use xlink:href="#literature-1"> </use>
+                </svg>
+                <div class="ms-2">
+                  <h3 class="h4 text-dark text-uppercase fw-normal">Open Cases</h3>
+                  <p class="text-gray-500 small">Last 3 months</p>
+                  <p class="display-6 mb-0">92</p>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+              <div class="d-flex">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy text-primary mt-1 flex-shrink-0">
+                  <use xlink:href="#paper-stack-1"> </use>
+                </svg>
+                <div class="ms-2">
+                  <h3 class="h4 text-dark text-uppercase fw-normal">New Cases</h3>
+                  <p class="text-gray-500 small">Last 7 days</p>
+                  <p class="display-6 mb-0">70</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Header Section-->
+      <section class="bg-white py-5">
+        <div class="container-fluid">
+          <div class="row d-flex align-items-md-stretch">
+            <!-- To Do List-->
+            
+            <!-- Line Chart -->
+            <div class="col-lg-6 col-md-12">
+              <div class="card shadow-0">
+               
+                <div>
+                  <div class="card-header border-bottom d-flex">
+                    <h4>Daily Sales</h4><a href="/admin/btn_one" class="ps-5" id="btn_one">📄</a>
+                  </div>
+                  <canvas id="myChart"></canvas>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-12">
+              <div class="card shadow-0">
+                <div class="card-header border-bottom d-flex">
+                  <h4>Blocked users/Unblocked users</h4> <a href="/admin/btn_two" class="ps-5" id="btn_two">📄</a>
+                </div>
+                <canvas id="chartTwo"></canvas>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Statistics Section-->
+      <section class="py-5">
+        <div class="container-fluid">
+          <div class="row align-items-stretch gy-4">
+            <div class="col-lg-4">
+             
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Updates Section -->
+      <section class="mb-5">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-4 col-md-12">
+           
+            </div>
+          </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  
+
+  fetch(
+    `/admin/graph`)
+    .then(res=>res.json())
+    .then(data=>{
+   
+      let x=[]
+      let y=[]
+
+  for (let i = 0; i < data.data.length; i++) {
+    x.push(data.data[i]._id)
+    y.push(data.data[i]. total_bill) 
+  }
+      new Chart(ctx, {
+    type: 'bar',
+    data: {
+    
+      labels: x,
+      datasets: [{
+        label: '# of Sales',
+        data: y ,
+        borderWidth: 1,
+        backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(75, 192, 192)',
+    ],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          
+          
+        }
+      }
+    }
+
+  });
+
+
+
+
+
+    })
+    .catch(error=>console.log(error))
+
+    const pie = document.getElementById('chartTwo');
+    
+
+    fetch(
+      `/admin/graphTwo` )
+      .then(res=>res.json())
+      .then(data=>{
+        let x= data.blockedcount
+        let y = data.udblockedcount
+        console.log(data);
+        new Chart(pie, {
+  type: 'doughnut',
+  data: {
+  labels: [
+    'Blocked',
+    'Unblocked',
+    
+  ],
+  datasets: [{
+    label: 'Blocked Users',
+    data: [x,y],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+    
+    ],
+    hoverOffset: 4
+  }]
+}
+});
+
+
+      })
+      .catch(error=>console.log(error))
+   
+
+   
+
+
+
+  
+</script>
+
+
+      </section>
+     
+      
+
+      <%-include('../layouts/admin/admin-footer')  -%> 
