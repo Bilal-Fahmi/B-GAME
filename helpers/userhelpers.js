@@ -58,6 +58,7 @@ const userOtp = async (otp, res, callback) => {
 
 const doLogin = async (req, res) => {
     let userlogin = req.body;
+    console.log('i amd ');
     let user = await userData.findOne({ $and: [{ email: req.body.email }, { status: 'Unblocked' }] });
     console.log('user signed', user);
     if (user) {
