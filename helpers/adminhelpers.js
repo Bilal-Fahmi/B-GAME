@@ -15,11 +15,9 @@ const doadLogin = async (req, res) => {
     console.log(req.body,"hhhhjjh")
     // console.log(' jerjsdfj');
     try {
-         console.log(req.body,"jhkjhkjhkljhlkjlkjsd") 
-    User.findOne({ email: req.body.email  })
-    // console.log(admin, " t=admin was dakjdfilsafdhvliausdhfliuashdfliuashdfliu")
-    // .catch(err=>console.log(err.message))
-   
+         console.log(req.body,"one") 
+         console.log(req.body.email);
+    User.findOne({email:req.body.email})
     .exec((error, user) => {
         console.log(error,user);
         if (error) {

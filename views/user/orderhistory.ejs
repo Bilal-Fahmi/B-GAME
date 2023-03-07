@@ -32,6 +32,8 @@
                 <div class="serial"><%= index+1 %></div>
                 <div class="country"><%= item.product.name %></div>
                 <div class="visit"><%= order.status  %></div>
+                <div class="visit"><%= order.payment  %></div>
+                
                 <% if (order.status !='Canceled'){%>
                <input type="button" value="Cancel" id="<%= order.id %>"  class="genric-btn primary circle arrow cancelbtn"><span class="lnr lnr-arrow-right"></span>
                <%} %>
