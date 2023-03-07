@@ -22,17 +22,17 @@
         <div class="progress-table">
           <div class="table-head">
             <div class="serial">#</div>
-            <div class="country">Product</div>
-            <div class="visit">Status</div>
-            <div class="visit">Payment</div>
-            <div class="visit">Amount</div>
-            <div class="visit pl-4" >Action</div>
+            <div class="visit ">Product</div>
+            <div class="visit ">Status</div>
+            <div class="visit ">Payment</div>
+            <div class="visit ">Amount</div>
+           
           </div>
           <% orders.forEach((order,index)=>{%>
           <% order.products.forEach((item)=>{%>
             <div class="table-row">
                 <div class="serial"><%= index+1 %></div>
-                <div class="country"><%= item.product.name %></div>
+                <div class="visit"><%= item.product.name %></div>
                 <div class="visit"><%= order.status  %></div>
                 <div class="visit"><%= order.payment  %></div>
                 <div class="visit"><%= order.billamount  %></div>
