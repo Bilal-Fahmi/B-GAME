@@ -16,7 +16,7 @@ const categoryCheck = async (name) => {
 const addcategory = (req, res) => {
     console.log(req.file);
     const newCategory = new Category({
-        name: req.body.name,
+        name: req.body.name.toLowerCase(),
         description: req.body.description,
 
         categoryimage: req.file.filename

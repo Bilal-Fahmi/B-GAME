@@ -44,7 +44,10 @@
                           <td><%-order.payment %> </td>
                           <td><%-order.billamount %> </td>
                           <td><%-order.orderdate.toLocaleString() %></td>
-                          <td><%= order.products %></td>
+                          
+                          <% order.products.forEach(function(product) {%>
+                            <td><%= product.product.name %></td> 
+                          <%})%>
                           <td><%-order.status  %></td>
                           <% if(order.status !='Placed'){%>
                            <td> <input type="button" value="Place"  class="btn btn-primary placebtn" id="<%= order._id %>" ></td>

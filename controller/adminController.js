@@ -121,7 +121,11 @@ const editProductForm = (req,res) =>
 const ordermanagement =(req,res)=>
 {
     try {
-        Order.find({})
+        Order.find({}).populate({
+            path:'products.product',
+            model:'Product'
+        })
+       
         .then(data=>res.render('admin/ordermanagement',{order:data}))
         .catch(error=>res.send(error))
 
