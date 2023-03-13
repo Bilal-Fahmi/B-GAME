@@ -1,60 +1,10 @@
 
-const otpHelper = require('../utils/otp')
 const bcrypt = require('bcrypt')
 const userData = require('../models/usermodel')
 const jwt = require('jsonwebtoken')
-const nodemailer = require('nodemailer')
-
-// // const catchAsync = require('../utils/catchAsync')
-
-let signup
-
-const doSignup = (data, res, callback) => {
-    console.log("received");
-    const mobileno = data.phone;
-    signup = data;
-    otpHelper.sendOtp(mobileno);
-    callback(true);
-}
-
-// const doSignup = (data, res, callback) => {
-//     console.log("received");
-//     const mobileno = data.phone;
-//     signup = data;
-//     otpHelper.sendOtp(mobileno);
-//     callback(true);
-// }
 
 
-const userOtp = async (otp, res, callback) => {
-    console.log(otp);
 
-    let { username, email, phone, password, confirmpassword } = signup;
-    await otpHelper.verifyOtp(phone, otp).then(async (verification) => {
-        if (verification.status == 'approved') {
-            console.log("succcccesssss?");
-            password = await bcrypt.hash(password, 10);
-            confirmpassword = await bcrypt.hash(password, 10);
-            const user = new userData({
-                username: username,
-                email: email,
-                phone: phone,
-                password: password,
-                confirmpassword: confirmpassword
-            })
-            user.save().then((doc) => {
-                callback(doc);
-            })
-                .catch((error) =>
-                    console.log('error', error))
-
-        }
-        else if (verification.status == 'pending') {
-            console.log('OTP not matched');
-        }
-    })
-
-}
 
 const doLogin = async (req, res) => {
     let userlogin = req.body;
@@ -105,4 +55,20 @@ let createToken = (user) => {
     return token;
 };
 
-module.exports = { doSignup, userOtp, doLogin, createToken }
+
+
+
+
+
+module.exports = { doLogin, createToken }
+
+
+
+
+
+
+
+
+
+
+
