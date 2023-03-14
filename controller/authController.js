@@ -260,7 +260,7 @@ async function verifyOtp(req){
         console.log('Error verifying OTP', error);
         return false;
     }
-}
+}  
 
 
 
