@@ -11,10 +11,6 @@ const { requireSignin } = require('../middleware/common')
 
 
 
-// if(router.get==*){router.get('*', (req, res) => {
-//     res.redirect('/errorpage');
-//   });
-//   router.get('/errorpage',authController.errorpage)}
 
 
 

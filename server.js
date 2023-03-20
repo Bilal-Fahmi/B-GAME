@@ -33,9 +33,13 @@ app.use(expressSession({
     saveUninitialized:true
   }))
 //Routes
+
 app.use('/', authRouter)
 app.use('/admin', adminRouter)
 app.use('/user',userRouter)
+app.use('*',(req,res)=>{
+  res.render('404page')
+})
 
 database.db.on('error', error => console.error(error))
 database.db.once('open', () => console.log('Connected to mongoose'))
