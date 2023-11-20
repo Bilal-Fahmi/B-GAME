@@ -44,8 +44,5 @@ app.use('*',(req,res)=>{
 database.db.on('error', error => console.error(error))
 database.db.once('open', () => console.log('Connected to mongoose'))
 
-
-
-
 app.listen(process.env.PORT || 3000)
 

@@ -24,14 +24,9 @@
           </div>
           <div class="input-container d-flex flex-column col-5 py-1">
             <label for="categoryimage" class="text-black fw-bold fs-5 py-1">Category Image:</label>
-            <input type="file" id="categoryimage" name="categoryimage" class="rounded border-0 py-2 px-2" required>
+            <input type="file" accept=".jpeg, .png, .jpg" id="categoryimage" name="categoryimage" class="rounded border-0 py-2 px-2" required>
           </div>
-        
-  
-         
-  
-          
-         
+
           <%if (typeof err!="undefined" && err) {%>
               <p class="text-danger text-center"><%=err%></p>
           <%}%>

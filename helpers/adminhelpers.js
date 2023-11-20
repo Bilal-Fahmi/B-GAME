@@ -1,61 +1,26 @@
-const User = require("../models/usermodel")
-const { createToken } = require("./userhelpers")
-
-
-const adEmail = process.env.adEmail
-const adPassword = process.env.adPassword
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
-
-
-
-
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const User = require("../models/usermodel");
+const { createToken } = require("./userhelpers");
 
 const doadLogin = async (req, res) => {
-    console.log(req.body,"hhhhjjh")
-    // console.log(' jerjsdfj');
-    try {
-         console.log(req.body,"one") 
-         console.log(req.body.email);
-    User.findOne({email:req.body.email})
-    .exec((error, user) => {
-        console.log(error,user);
-        if (error) {
-            console.log(error);
-            res.redirect('/admin')
-        }
-        if (user) {
-            console.log(user);
-            if (user.authenticate(req.body.password)) {
-                let token = createToken(user)
-                res.cookie('Authorization', `Bearer ${token}`)
-                console.log('ad success');
-                res.redirect('/admin/dashboard')
-
-            }
-          
-        }
-    })
-        
-    } catch (error) {
-        console.log(error);
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email: email });
+    console.log(user, "yoooo");
+    if (user && user.authenticate(password)) {
+      let token = createToken(user);
+      res.cookie("Authorization", `Bearer ${token}`);
+      console.log("admin login success");
+      res.redirect("/admin/dashboard");
+    } else {
+      console.log("admin not found");
+      res.redirect("/admin");
     }
-    finally{
-        console.log('jandslo');
-    }
-
-
-  
-
-}
-    //     else {
-    //         req.session.adminloginErr='Invalid username or password'
-    //         res.render('admin/login')
-    //     }
-    // }
-
-
-
-module.exports={
-    doadLogin
-}
+  } catch (error) {
+    console.log(error);
+  }
+};
+module.exports = {
+  doadLogin,
+};
