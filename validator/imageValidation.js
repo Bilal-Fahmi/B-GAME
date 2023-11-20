@@ -41,7 +41,8 @@ const bannerStorage = multer.diskStorage({
 const productImageStorage = multer.diskStorage({
   destination: (req, file, cb) => { 
     console.log(req.body); 
-    const productPath = path.join(productDestination, req.body.category);
+    // const productPath = path.join(productDestination, req.body.category);
+    const productPath = path.join(productDestination);
     console.log(productPath);
     cb(null, productPath);
     
@@ -55,7 +56,8 @@ const productImageStorage = multer.diskStorage({
 
 const poductImageUpadate = multer.diskStorage({
   destination: (req, file, cb)=>{
-    const productPath = path.join(productDestination, req.body.category);
+    // const productPath = path.join(productDestination, req.body.category);
+    const productPath = path.join(productDestination);
     cb(null, productPath);
   },
   filename: (req, file, cb)=>{

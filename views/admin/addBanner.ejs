@@ -40,7 +40,7 @@
 
               <div class="input-container d-flex flex-column col-5 py-1">
                 <label for="productImage" class="text-black fw-bold fs-5 py-1">Banner</label>
-                <input type="file" multiple id="banner" name="banner" class="rounded border-0 py-2 px-2" required>
+                <input type="file" accept=".jpeg, .png, .jpg" multiple id="banner" name="banner" class="rounded border-0 py-2 px-2" required>
               </div>
               <%if (typeof err!="undefined" && err) {%>
                   <p class="text-danger text-center"><%=err%></p>

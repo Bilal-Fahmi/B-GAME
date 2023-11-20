@@ -77,6 +77,7 @@ router.post(
   "/addincategory",
   requireSignin,
   adminMiddleware,
+  CategoryImage.uploadCategoryImage.single("categoryimage"),
   category.addcategory
 );
 router.post(
@@ -85,6 +86,7 @@ router.post(
   adminMiddleware,
   category.updatecategory
 );
+router.post('/deletecategory/:name',requireSignin,adminMiddleware,category.deletecategory)
 
 //PRODUCT
 router.get(
@@ -101,7 +103,11 @@ router.get(
 );
 router.post("/listproduct/:id", product.listproduct);
 router.post("/unlistproduct/:id", product.unlistproduct);
-router.post("/addinproduct", product.addproduct);
+router.post(
+  "/addinproduct",
+  ProductImage.uploadProductImage.single("productImage"),
+  product.addproduct
+);
 router.post("/edtinproduct", product.updateproduct);
 // router.post('/deleteproduct/:id',product.deleteproduct)
 
@@ -148,6 +154,7 @@ router.post(
   adminMiddleware,
   couponmanagement.updatecoupon
 );
+// router.post('/deletecoupon/:code',requireSignin,adminMiddleware,couponmanagement.deletecoupon)
 
 //ORDER
 router.get(

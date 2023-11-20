@@ -13,6 +13,7 @@ const categoryCheck = async (name) => {
 };
 
 const addcategory = async (req, res) => {
+  console.log(req.file);
   const { path } = req.file;
   try {
     const imageUrl = await uploadImage(path);

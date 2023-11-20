@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
-                                    <img src="/uploads/banner/<%= banner.image[index] %>" alt="">
+                                    <img src="<%= banner.image[index] %>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                 <% product.forEach(item=>{%>
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
-                                        <img src="/uploads/product/<%= item.category %>/<%= item.productImage%>" alt="">
+                                        <img src="<%= item.productImage%>" alt="">
                                         <div class="single_product_text">
                                             <h4><%= item.name %></h4>
                                             <h3>₹<%= item.price %></h3>

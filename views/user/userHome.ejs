@@ -19,7 +19,7 @@
                                         </div>
                                     </div>
                                     <div class="banner_img d-none d-lg-block">
-                                        <img src="/uploads/banner/<%= banner.image[index] %>" alt="">
+                                        <img src="<%= banner.image[index] %>" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -49,16 +49,16 @@
                     <div class="single_feature_post_text">
                         <p>HD</p>
                         <h3>Modern Warfare 2</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW </a>
-                        <img src="/uploads/product/Shooter-cod.webp" class="pb-5 pr-5" width="450px" alt="">
+                        <a href="" class="feature_btn">EXPLORE NOW </a>
+                        <img src="https://res.cloudinary.com/dkqcordxf/image/upload/v1700497738/diolsosf4aw6qcrftnyd.jpg" class="pb-5 pr-5" width="450px" alt="">
                     </div>
                 </div>
                 <div class="col-lg-5 col-sm-6">
                     <div class="single_feature_post_text">
                         <p>4K</p>
                         <h3>Assassin's Creed Valhalla</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW</a>
-                        <img src="/uploads/product/Action-adventure/Assassin's-Creed-Valhalla-ac.jpg" class="pb-5 pr-5" width="400px" alt="">
+                        <a href="" class="feature_btn">EXPLORE NOW</a>
+                        <img src="https://res.cloudinary.com/dkqcordxf/image/upload/v1700497916/kibr3vbegvdzzfyx3nep.jpg" class="pb-5 pr-5" width="400px" alt="">
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                                 <% product.forEach(item=>{%>
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
-                                        <img src="/uploads/product/<%= item.category %>/<%= item.productImage%>" alt="">
+                                        <img src="<%= item.productImage%>" alt="">
                                         <div class="single_product_text">
                                             <h4><%= item.name %></h4>
                                             <h3>₹<%= item.price %></h3>

@@ -44,7 +44,7 @@
                             <td><%-product.name %> </td>
                             <td><%-product.description %> </td>
                             <td><%-product.category %></td>
-                            <td><img src="/uploads/product/<%= product.category %>/<%=product.productImage %> " width="50px"> </td>
+                            <td><img src="<%=product.productImage %> " width="50px"> </td>
                            <%if(product.status=='Listed'){%> 
                           <td><span class="badge text-bg-success">Listed</span></td>
                           <% } else { %>

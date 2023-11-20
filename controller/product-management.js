@@ -14,24 +14,25 @@ const productCheck = async (name) => {
 };
 
 const addproduct = async (req, res) => {
-  const { path } = req.file;
-  const imgUrl = await uploadImage(path);
-  if (!imgUrl) throw new Error("Error in creating image url");
-  const newProduct = new Product({
-    name: req.body.name,
-    category: req.body.category,
-    description: req.body.description,
-    price: req.body.price,
-    stockQuantity: req.body.stockQuantity,
-    productImage: imgUrl,
-  });
-  newProduct.save((error) => {
-    if (error) {
-      res.status(500).send(error);
-    } else {
-      res.redirect("/admin/productTable");
-    }
-  });
+  const { path } = req.file;  
+  try {
+      const imgUrl = await uploadImage(path);
+      console.log(imgUrl,'hrtereed');
+    if (!imgUrl) throw new Error("Error in creating image url");
+    const newProduct = new Product({
+      name: req.body.name,
+      category: req.body.category,
+      description: req.body.description,
+      price: req.body.price,
+      stockQuantity: req.body.stockQuantity,
+      productImage: imgUrl,
+    });
+    newProduct.save();
+    if (!newProduct) throw new Error("New product not created");
+    res.redirect("/admin/productTable");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const allproduct = (req, res) => {
